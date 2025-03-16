@@ -1,0 +1,194 @@
+$ terraform apply
+data.aws_ami.amiID: Reading...
+aws_key_pair.dove-key: Refreshing state... [id=dove-key]
+aws_security_group.dove-sg: Refreshing state... [id=sg-049554b7252f70716]
+aws_vpc_security_group_egress_rule.allow_all_outbound_ipv4: Refreshing state... [id=sgr-0bd8f60f7cda1bc9b]
+aws_vpc_security_group_egress_rule.allow_all_outbound_ipv6: Refreshing state... [id=sgr-0f6327053a1d490f8]
+aws_vpc_security_group_ingress_rule.sshfrommyip: Refreshing state... [id=sgr-09f53052178a9d64a]
+aws_vpc_security_group_ingress_rule.allow_http: Refreshing state... [id=sgr-0027f675048c88100]
+aws_instance.web: Refreshing state... [id=i-07ae680897c6b3ed2]
+data.aws_ami.amiID: Read complete after 1s [id=ami-0f9de6e2d2f067fca]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # aws_ec2_instance_state.web-state will be created
+  + resource "aws_ec2_instance_state" "web-state" {
+      + force       = false
+      + id          = (known after apply)
+      + instance_id = (known after apply)
+      + state       = "running"
+    }
+
+  # aws_instance.web is tainted, so must be replaced
+-/+ resource "aws_instance" "web" {
+      ~ arn                                  = "arn:aws:ec2:us-east-1:182399705438:instance/i-07ae680897c6b3ed2" -> (known after apply)
+      ~ associate_public_ip_address          = true -> (known after apply)
+      ~ cpu_core_count                       = 1 -> (known after apply)
+      ~ cpu_threads_per_core                 = 2 -> (known after apply)
+      ~ disable_api_stop                     = false -> (known after apply)
+      ~ disable_api_termination              = false -> (known after apply)
+      ~ ebs_optimized                        = false -> (known after apply)
+      + enable_primary_ipv6                  = (known after apply)
+      - hibernation                          = false -> null
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      ~ id                                   = "i-07ae680897c6b3ed2" -> (known after apply)
+      ~ instance_initiated_shutdown_behavior = "stop" -> (known after apply)
+      + instance_lifecycle                   = (known after apply)
+      ~ instance_state                       = "running" -> (known after apply)
+      ~ ipv6_address_count                   = 0 -> (known after apply)
+      ~ ipv6_addresses                       = [] -> (known after apply)
+      ~ monitoring                           = false -> (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      ~ placement_partition_number           = 0 -> (known after apply)
+      ~ primary_network_interface_id         = "eni-05b708f97bd9bcec6" -> (known after apply)
+      ~ private_dns                          = "ip-172-31-88-212.ec2.internal" -> (known after apply)
+      ~ private_ip                           = "172.31.88.212" -> (known after apply)
+      ~ public_dns                           = "ec2-52-90-43-41.compute-1.amazonaws.com" -> (known after apply)
+      ~ public_ip                            = "52.90.43.41" -> (known after apply)
+      ~ secondary_private_ips                = [] -> (known after apply)
+      ~ security_groups                      = [
+          - "dove-sg",
+        ] -> (known after apply)
+      + spot_instance_request_id             = (known after apply)
+      ~ subnet_id                            = "subnet-092ea6aa0c7ddb4f1" -> (known after apply)
+        tags                                 = {
+            "Name"    = "Dove-web"
+            "Project" = "Dove"
+        }
+      ~ tenancy                              = "default" -> (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+        # (9 unchanged attributes hidden)
+
+      ~ capacity_reservation_specification (known after apply)
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      ~ cpu_options (known after apply)
+      - cpu_options {
+          - core_count       = 1 -> null
+          - threads_per_core = 2 -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - credit_specification {
+          - cpu_credits = "unlimited" -> null
+        }
+
+      ~ ebs_block_device (known after apply)
+
+      ~ enclave_options (known after apply)
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      ~ ephemeral_block_device (known after apply)
+
+      ~ instance_market_options (known after apply)
+
+      ~ maintenance_options (known after apply)
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      ~ metadata_options (known after apply)
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 2 -> null
+          - http_tokens                 = "required" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      ~ network_interface (known after apply)
+
+      ~ private_dns_name_options (known after apply)
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      ~ root_block_device (known after apply)
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/xvda" -> null
+          - encrypted             = false -> null
+          - iops                  = 3000 -> null
+          - tags                  = {} -> null
+          - tags_all              = {} -> null
+          - throughput            = 125 -> null
+          - volume_id             = "vol-0f2d84b8c05ea6d2b" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp3" -> null
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+Plan: 2 to add, 0 to change, 1 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.web: Destroying... [id=i-07ae680897c6b3ed2]
+aws_instance.web: Still destroying... [id=i-07ae680897c6b3ed2, 10s elapsed]
+aws_instance.web: Still destroying... [id=i-07ae680897c6b3ed2, 20s elapsed]
+aws_instance.web: Still destroying... [id=i-07ae680897c6b3ed2, 30s elapsed]
+aws_instance.web: Still destroying... [id=i-07ae680897c6b3ed2, 40s elapsed]
+aws_instance.web: Still destroying... [id=i-07ae680897c6b3ed2, 50s elapsed]
+aws_instance.web: Destruction complete after 51s
+aws_instance.web: Creating...
+aws_instance.web: Still creating... [10s elapsed]
+aws_instance.web: Provisioning with 'file'...
+aws_instance.web: Still creating... [20s elapsed]
+aws_instance.web: Still creating... [30s elapsed]
+aws_instance.web: Still creating... [40s elapsed]
+aws_instance.web: Still creating... [50s elapsed]
+aws_instance.web: Still creating... [1m0s elapsed]
+aws_instance.web: Still creating... [1m10s elapsed]
+aws_instance.web: Still creating... [1m20s elapsed]
+aws_instance.web: Still creating... [1m30s elapsed]
+aws_instance.web: Still creating... [1m40s elapsed]
+aws_instance.web: Still creating... [1m50s elapsed]
+aws_instance.web: Still creating... [2m0s elapsed]
+aws_instance.web: Still creating... [2m10s elapsed]
+aws_instance.web: Still creating... [2m20s elapsed]
+aws_instance.web: Still creating... [2m30s elapsed]
+aws_instance.web: Still creating... [2m40s elapsed]
+aws_instance.web: Still creating... [2m50s elapsed]
+aws_instance.web: Still creating... [3m0s elapsed]
+aws_instance.web: Still creating... [3m10s elapsed]
+aws_instance.web: Still creating... [3m20s elapsed]
+aws_instance.web: Still creating... [3m30s elapsed]
+aws_instance.web: Still creating... [3m40s elapsed]
+aws_instance.web: Still creating... [3m50s elapsed]
+aws_instance.web: Still creating... [4m0s elapsed]
+aws_instance.web: Still creating... [4m10s elapsed]
+aws_instance.web: Still creating... [4m20s elapsed]
+aws_instance.web: Still creating... [4m30s elapsed]
+aws_instance.web: Still creating... [4m40s elapsed]
+aws_instance.web: Still creating... [4m50s elapsed]
+aws_instance.web: Still creating... [5m0s elapsed]
+aws_instance.web: Still creating... [5m10s elapsed]
+╷
+│ Error: file provisioner error
+│
+│   with aws_instance.web,
+│   on instance.tf line 13, in resource "aws_instance" "web":
+│   13:   provisioner "file" {
+│
+│ timeout - last error: SSH authentication failed (ubuntu@52.91.34.16:22): ssh: handshake failed: ssh: unable to authenticate, attempted methods [none publickey], no supported methods  
+│ remain
+╵
