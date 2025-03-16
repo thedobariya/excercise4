@@ -10,17 +10,18 @@ resource "aws_instance" "web" {
     Project = "Dove"
   }
 
-  provisioner "file" {
-    source      = "web.sh"
-    destination = "/tmp/web.sh"
-  }
-
   connection {
     type        = "ssh"
     user        = var.webuser
     private_key = file("dovekey")
     host        = self.public_ip
   }
+
+  provisioner "file" {
+    source      = "web.sh"
+    destination = "/tmp/web.sh"
+  }
+
 
   provisioner "remote-exec" {
 
